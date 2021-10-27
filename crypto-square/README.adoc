@@ -6,6 +6,7 @@
 :date: 26 October 2021
 :copyright: 2021
 :source-highlighter: pygments
+:source-language: ruby
 :pygments-style: manni
 :pygments-linenums-mode: inline
 :toc: right
@@ -72,7 +73,7 @@ garbage collection
 
 This is the second iteration as submitted to Exercism.
 
-[source, ruby, linenums]
+[source%linenums]
 ----
 class Crypto
 
@@ -103,7 +104,7 @@ end
 
 === Version 1
 
-[source, ruby, linenums]
+[source%linenums]
 ----
 class Crypto
 
@@ -131,5 +132,6 @@ public
 
 end
 ----
+
 
 
