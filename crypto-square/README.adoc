@@ -1,0 +1,137 @@
+= Notes on Crypto Square as inspired by Exercism
+:author: Gemp
+:description: A discussion of Crypto Square as offered by Exercism.
+:sectanchors: <.>
+:safe: SERVER
+:date: 26 October 2021
+:copyright: 2021
+:source-highlighter: pygments
+:source-language: ruby
+:pygments-style: manni
+:pygments-linenums-mode: inline
+:toc: right
+:icons: font
+
+This document is focused on Ruby, using the exercise called Crypto Square on
+Exercism.  The current version of the exercise description may have
+changed.footnote:cryptosquare[https://github.com/exercism/ruby/blob/main/exercises/practice/crypto-square/.docs/instructions.md]
+
+.Description of Crypto Square
+****
+As it was when solved, the documentation was written as:
+
+include::https://raw.githubusercontent.com/exercism/ruby/main/exercises/practice/crypto-square/.docs/instructions.md[leveloffset=+1]
+****
+
+== Crypto Square Iteration 1
+
+=== Version 1
+
+
+[TIP]
+Indentation in Ruby is two spaces, not tab, not four spaces.  We can use a
+variance from consistent style, though, to bring attention to an area when
+needed.  A very nice side effect from consistent style adherence!
+
+[source, ruby, linenums]
+----
+class Crypto
+
+private # <1>
+
+  attr_reader :text
+
+  def initialize(text)
+    @text = text.downcase.scan(/\w/).freeze # <2>
+  end
+
+  def cipher
+    return text if text.empty?
+    chars = Math.sqrt(text.size).ceil
+    length = chars * (text.size / chars.to_f).ceil
+    (0...chars).map do |start|
+      (start...length).step(chars).map { |i| text.fetch(i, ' ') }.join
+    end
+  end
+
+public
+
+  def ciphertext
+    cipher.join(' ')
+  end
+
+end
+----
+<1> Indentation in Ruby is two spaces, so this is contrary to convention
+<2> Explanation of why we would want to freeze this, and if it is immune to
+garbage collection
+
+
+== Crypto Square iteration 2
+
+=== Version 1
+
+This is the second iteration as submitted to Exercism.
+
+[source%linenums]
+----
+class Crypto
+
+private
+
+  attr_reader :text
+
+  def initialize(text)
+    @text = text.downcase.gsub(/\W/, '').freeze
+  end
+
+  def cipher
+    cols = Math.sqrt(text.size).ceil
+    text.scan(/.{1,#{cols}}/).map { |s| s.ljust(cols).chars }.transpose
+  end
+
+public
+
+  def ciphertext
+    return text if text.empty?
+    @cipher ||= cipher.map(&:join).join(' ')
+  end
+
+end
+----
+
+== Crypto Square Version 3
+
+=== Version 1
+
+[source%linenums]
+----
+class Crypto
+
+private
+
+  attr_reader :text
+
+  def initialize(text)
+    @text = text.downcase.gsub(/\W/, '').freeze
+  end
+
+  def cipher
+    cols = Math.sqrt(text.size).ceil
+    miss = text.size.modulo(cols) #avoid ljust on every string (comment)
+    adjusted = miss.zero? ? text : text + ' ' * (cols - miss)
+    adjusted.scan(/.{1,#{cols}}/).map(&:chars).transpose
+  end
+
+public
+
+  def ciphertext
+    return text if text.empty?
+    @cipher ||= cipher.map(&:join).join(' ')
+  end
+
+end
+----
+
+
+
