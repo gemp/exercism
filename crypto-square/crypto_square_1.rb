@@ -1,11 +1,11 @@
 class Crypto
 
-private
+private # <1>
 
   attr_reader :text
 
   def initialize(text)
-    @text = text.downcase.scan(/\w/).freeze
+    @text = text.downcase.scan(/\w/).freeze # <2>
   end
 
   def cipher
