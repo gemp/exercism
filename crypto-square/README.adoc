@@ -1,0 +1,67 @@
+= Notes on Crypto Square as inspired by Exercism
+:author: Gemp
+:description: A discussion of Crypto Square as offered by Exercism.
+:sectanchors: <.>
+:safe: SERVER
+:date: 26 October 2021
+:copyright: 2021
+:source-highlighter: pygments
+:source-language: ruby
+:pygments-style: manni
+:pygments-linenums-mode: inline
+:toc: right
+:icons: font
+
+This document is focused on Ruby, using the exercise called Crypto Square on Exercism.
+The current version of the exercise description may have changed.footnote:cryptosquare[https://github.com/exercism/ruby/blob/main/exercises/practice/crypto-square/.docs/instructions.md]
+
+.Description of Crypto Square
+****
+As it was when solved, the documentation was written as:
+
+include::https://raw.githubusercontent.com/exercism/ruby/main/exercises/practice/crypto-square/.docs/instructions.md[leveloffset=+1]
+****
+
+<<<
+== Crypto Square Iteration 1
+
+=== Version 1
+
+
+[TIP]
+Indentation in Ruby is two spaces, not tab, not four spaces.
+We can use a variance from consistent style, though, to bring attention to an area when needed.
+A very nice side effect from consistent style adherence!
+
+.crypto_square_1.rb
+[source, ruby, linenums]
+----
+include::crypto_square_1.rb[]
+----
+<1> Indentation in Ruby is two spaces, so this is contrary to convention
+<2> Explanation of why we would want to freeze this, and if it is immune to garbage collection
+
+<<<
+== Crypto Square iteration 2
+
+=== Version 2
+
+This is the second iteration as submitted to Exercism.
+
+.crypto_square_2.rb
+[source, ruby, linenums]
+----
+include::crypto_square_2.rb[]
+----
+
+<<<
+== Crypto Square Version 3
+
+=== Version 3
+
+.cryto_square_2_bis.rb
+[source, ruby, linenums]
+----
+include::crypto_square_2_bis.rb[]
+----
+
